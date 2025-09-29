@@ -66,7 +66,7 @@ To make the image accessible to the Kubernetes cluster, it was pushed to Docker 
             spec:
               containers:
               - name: swiggy-app
-                image: <your_dockerhub_username>/swiggy-app:latest
+                image: aksarsr/swiggy-app:latest
                 ports:
                 - containerPort: 3000
         ```
@@ -92,7 +92,9 @@ To make the image accessible to the Kubernetes cluster, it was pushed to Docker 
     kubectl apply -f deployment.yaml
     kubectl apply -f service.yaml
     ```
+    
    ![AWS EC2 Security Group](images/kubectlapply.png)
+
 
 ## Accessing the Application
 
@@ -101,11 +103,12 @@ After deployment, the `minikube service` command was used to get the external UR
 ```bash
 minikube service swiggy-service
 ```
-![AWS EC2 Security Group](images/minicube-service-url.png)
+
 
 ## OUTPUT
 
 ![AWS EC2 Security Group](images/output.png)
+
 
 ## Kubernetes Commands for Swiggy-Clone
 
@@ -122,6 +125,8 @@ kubectl get deployments
 ```bash
 kubectl get pods
 ```
+
+
 ![AWS EC2 Security Group](images/kubectl-get-pods.png)
 
 - Displays all the pods in the current namespace along with their status (Running, Pending, CrashLoopBackOff, etc.).
