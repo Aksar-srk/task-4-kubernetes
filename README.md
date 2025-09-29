@@ -37,12 +37,13 @@ To make the image accessible to the Kubernetes cluster, it was pushed to Docker 
     ```bash
     docker tag swiggy-app:latest <your_dockerhub_username>/swiggy-app:1.0
     ```
-    ![AWS EC2 Security Group](images/pr.png)
+    ![AWS EC2 Security Group](images/tag.png)
     
     ```bash
     docker push <your_dockerhub_username>/swiggy-app:1.0
     ```
-    ![AWS EC2 Security Group](images/pr.png)
+    ![AWS EC2 Security Group](images/pushdockerhub.png)
+    ![AWS EC2 Security Group](images/pushdockerhub1.png)
 
 
 1.  **Kubernetes Manifests**: Separate `deployment.yaml` and `service.yaml` files were created to define the application's resources.
@@ -91,7 +92,7 @@ To make the image accessible to the Kubernetes cluster, it was pushed to Docker 
     kubectl apply -f deployment.yaml
     kubectl apply -f service.yaml
     ```
-   ![AWS EC2 Security Group](images/pr.png)
+   ![AWS EC2 Security Group](images/kubectlapply.png)
 
 ## Accessing the Application
 
@@ -100,17 +101,15 @@ After deployment, the `minikube service` command was used to get the external UR
 ```bash
 minikube service swiggy-service
 ```
-![AWS EC2 Security Group](images/pr.png)
+![AWS EC2 Security Group](images/minicube-service-url.png)
 
 ## OUTPUT
 
-![AWS EC2 Security Group](images/pr.png)
+![AWS EC2 Security Group](images/output.png)
 
 ## Kubernetes Commands for Swiggy-Clone
 
 This section contains the important `kubectl` and `minikube` commands used to manage, debug, and access the **Swiggy-Clone** application deployed on Kubernetes (via Minikube).
-
----
 
 ### Get Deployments
 ```bash
@@ -123,6 +122,8 @@ kubectl get deployments
 ```bash
 kubectl get pods
 ```
+![AWS EC2 Security Group](images/kubectl-get-pods.png)
+
 - Displays all the pods in the current namespace along with their status (Running, Pending, CrashLoopBackOff, etc.).
 - Pods are the smallest deployable units in Kubernetes, and they host the container(s) of your application.
 
@@ -130,6 +131,8 @@ kubectl get pods
 ```bash
 kubectl get all
 ```
+![AWS EC2 Security Group](images/kubectl-get-all.png)
+
 - Lists all resources in the current namespace such as Pods, Deployments, Services, ReplicaSets, etc.
 - This command is useful for quickly checking the overall health of your application.
 
@@ -137,6 +140,7 @@ kubectl get all
 ```bash
 kubectl logs pod/swiggy-app-5bd74f5f5f-w6w9
 ```
+![AWS EC2 Security Group](images/kubectl-logs.png)
 - Shows the logs of a specific pod.
 - This is helpful for debugging issues inside the application container.
 
@@ -144,6 +148,8 @@ kubectl logs pod/swiggy-app-5bd74f5f5f-w6w9
 ```bash
 minikube service swiggy-service --url
 ```
+![AWS EC2 Security Group](images/minicube-service-url.png)
+
 - Gets the external URL of the swiggy-service running in Minikube.
 - Open this URL in your browser to access the deployed Swiggy-Clone application.
 
@@ -151,5 +157,7 @@ minikube service swiggy-service --url
 ```bash
 kubectl get endpoints swiggy-service
 ```
+![AWS EC2 Security Group](images/kubectl-endpoints.png)
+
 - Lists the pod IPs and ports that are linked to the swiggy-service.
 - This verifies whether the service is correctly routing traffic to the application pods.
